@@ -10,6 +10,6 @@ def language_analysis(text):
     return document.analyze_sentiment().sentiment
 
 
-example_text = 'I love data science!'
+example_text = 'absolute perfection'
 sentiment = language_analysis(example_text)
 print('score:',sentiment.score,'magnitude:', sentiment.magnitude)

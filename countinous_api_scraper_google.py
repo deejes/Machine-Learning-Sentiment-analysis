@@ -20,7 +20,7 @@ consumer_key , consumer_secret , access_token , access_secret = data[0].strip(),
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
-pdb.set_trace()
+# pdb.set_trace()
 
 if collection.count() == 0:
     max_id = 896188912883777537
@@ -28,7 +28,7 @@ if collection.count() == 0:
 else:
     max_id = collection.find()[collection.count()-1]['id']
 
-pdb.set_trace()
+# pdb.set_trace()
 
 
 while True:
