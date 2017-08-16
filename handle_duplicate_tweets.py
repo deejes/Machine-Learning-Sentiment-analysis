@@ -34,8 +34,43 @@ for x in collection.find():
 '''
 
 
+
+for x in range(collection.count()-1):
+    current_tweet = collection.find()[x]
+    matching_tweet = test_collection.find_one({'text':current_tweet['text']})
+    # current tweet is not in new database => run api call, create new doc in
+    # new_db with text, sentiment, and users array containing current_tweet user
+    if matching_tweet == None:
+        api_call = api_call(x)
+        test_collection.insert_one(
+                            {'text': current_tweet['text'],
+                            'sentiment': api_call,
+                            'users': [current_tweet['user.id']]
+                            )
+    # current tweet is in new database
+    else:
+        # retweet from same user => delete tweeet from original db
+        if current_tweet['user.id'] in matching_tweet['users']:
+            collection.delete_one({'id':current_tweet['id']})
+        # retweet from another user =>
+        # 1) get sentiment from new_db and add to current tweet
+        # 2) add current_tweet user to matching_tweet users array
+        else:
+            collection.update_one(
+            {'id':current_tweet.id},
+            {'$set':{
+            'sentiment' = matching_tweet.sentimet
+            }})
+            test_collection.update_one(
+            {'id':current_tweet.id},
+            {'$push':{
+            'users' : current_tweet['user.id']
+            }})
+
+
+
 # connects to the mongo server, defines a database twitter, and then a collection (table)
-pprint.pprint(collection.find()[0])
+# pprint.pprint(collection.find()[0])
 '''
 text = collection.find()[5]['text']
 pprint.pprint(collection.find_one({"text": text}))
