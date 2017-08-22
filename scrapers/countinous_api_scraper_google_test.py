@@ -9,7 +9,7 @@ import pdb
 
 # connects to the mongo server, defines a database twitter, and then a collection (table)
 client = MongoClient()
-collection = client.twitter_db.tesla
+collection = client.twitter_db.google_test_db
 
 # these lines are setting api keys from api_keys.txt.
 with open ("api_keys.txt", "r") as myfile:
@@ -28,14 +28,16 @@ if collection.count() == 0:
 else:
     max_id = collection.find()[collection.count()-1]['id']
 
-# pdb.set_trace()
 
 
 while True:
-    results = api.search('#tesla', count=100, max_id = max_id)
+    pdb.set_trace()
+    results = api.search('#google', count=4, max_id = max_id)
     for result in results:
             if result.lang == 'en' and result.user.followers_count > 100:
                 collection.insert_one(result._json)
+                pdb.set_trace()
                 print (result._json['text'])
-                print (max_id,collection.count())
+                print (collection.count())
     max_id = collection.find()[collection.count()-1]['id']
+    break

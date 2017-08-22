@@ -1,4 +1,6 @@
-#run gcloud_api_key_path.txt after every reboot,
+#run the following command after every reboot -
+#         export GOOGLE_APPLICATION_CREDENTIALS='/home/dj/Downloads/google_cloud_api_key.json'
+
 from google.cloud import language
 import pdb
 
@@ -12,4 +14,5 @@ def language_analysis(text):
 
 example_text = 'absolute perfection'
 sentiment = language_analysis(example_text)
+
 print('score:',sentiment.score,'magnitude:', sentiment.magnitude)

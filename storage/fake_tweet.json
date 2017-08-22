@@ -1,0 +1,36 @@
+[ { "text":"a",
+ "user":{ "id_str":"1"}},
+{
+ "text":"a",
+ "user":{
+   "id_str":"1"
+ }
+},
+{
+ "text":"a",
+ "user":{
+   "id_str":"1"
+ }
+},
+{
+ "text":"b",
+ "user":{
+   "id_str":"1"
+ }
+},
+{
+ "text":"b",
+ "user":{
+   "id_str":"2"
+ }
+},
+{
+ "text":"c",
+ "user":{
+   "id_str":"2"
+ }
+}
+
+]
+
+/*afterwards this db should be  4 count, deleting index 1 and 2*/
