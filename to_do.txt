@@ -1,0 +1,10 @@
+finish ml model - done
+plot ml and sentiment - done
+map api
+streaming listener - done
+figure out how to eiliminate retweets from the api call or filter them.
+figure out how to evaluate if a field exists without throwin an error.
+
+
+can we use the results of the api to to ML?
+- YES!
