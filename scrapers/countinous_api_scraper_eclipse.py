@@ -34,10 +34,9 @@ while True:
     # results = api.search('#Eclipse2017', count=100)
     results = api.search('#Eclipse2017', count=100, max_id = max_id)
     for result in results:
-            if result.lang == 'en' and result.user.followers_count > 100:
-                # pdb.set_trace()
+            if result.lang == 'en' and result.user.followers_count > 100 and (not result.retweeted) and ('RT @' not in result.text):
+                pdb.set_trace()
                 collection.insert_one(result._json)
                 print (result._json['text'])
                 print (collection.count())
     max_id = collection.find()[collection.count()-1]['id']
-    # import pdb; pdb.set_trace()
