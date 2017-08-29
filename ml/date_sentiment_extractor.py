@@ -9,11 +9,10 @@ import pdb
 import sentiment_mod as s
 
 client = MongoClient()
-collection = client.twitter_db.monsanto
+collection = client.twitter_db.wtf
 all_tweets = collection.find()
 result = []
-# n = 0
-dates = []
+# dates = []
 
 
 for x in range(collection.count()):
@@ -28,16 +27,16 @@ for x in range(collection.count()):
         sentiment = -1
     result.append(sentiment*confidence)
     # n += 1
-    dates.append(current_tweet['created_at'])
+    # dates.append(current_tweet['created_at'])
     # if n == 250:
     #     break
 
 # import pdb; pdb.set_trace()
 
-with open("monsanto_sent.txt", 'w') as outfile:
+with open("wtf_sent.txt", 'w') as outfile:
     json.dump(result, outfile)
-with open("monsanto_sent_dates.txt", 'w') as outfile:
-    json.dump(dates, outfile)
+# with open("monsanto_sent_dates.txt", 'w') as outfile:
+#     json.dump(dates, outfile)
 
 
 
