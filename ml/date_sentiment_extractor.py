@@ -9,7 +9,7 @@ import pdb
 import sentiment_mod as s
 
 client = MongoClient()
-collection = client.twitter_db.wtf
+collection = client.twitter_db.tesla728
 all_tweets = collection.find()
 result = []
 # dates = []
@@ -18,7 +18,7 @@ result = []
 for x in range(collection.count()):
     current_tweet = all_tweets[x]
     sentiment_value, confidence = s.sentiment(current_tweet['text'])
-    print (sentiment_value, confidence)
+    # print (sentiment_value, ((confidence-0.5)*2))
     sentiment = 0
 
     if sentiment_value == "pos":
@@ -33,7 +33,7 @@ for x in range(collection.count()):
 
 # import pdb; pdb.set_trace()
 
-with open("wtf_sent.txt", 'w') as outfile:
+with open("tesla728-us.txt", 'w') as outfile:
     json.dump(result, outfile)
 # with open("monsanto_sent_dates.txt", 'w') as outfile:
 #     json.dump(dates, outfile)

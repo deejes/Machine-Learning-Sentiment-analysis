@@ -5,18 +5,18 @@ import pprint
 from sentiment_analyzer_google_cloudapi import language_analysis
 
 client = MongoClient()
-collection = client.twitter_db.wtf
+collection = client.twitter_db.happy
 
 
 # pprint.pprint (collection.find()[0])
 
-google_scores = []
-google_magnitudes = []
+scores = []
+magnitudes = []
 
 # pdb.set_trace()
 
 # for x in range (collection.count()):
-for x in range (700,collection.count()):
+for x in range (500,collection.count()):
     # import pdb; pdb.set_trace()
     try:
         current_tweet = collection.find()[x]
@@ -27,14 +27,14 @@ for x in range (700,collection.count()):
         # {'$set':{
         # 'sentiment.score': sentiment_object.score
         # }})
-        google_scores.append(sentiment_object.score)
-        google_magnitudes.append(sentiment_object.magnitude)
+        scores.append(sentiment_object.score)
+        magnitudes.append(sentiment_object.magnitude)
     except:
         print('failed')
 
 
 
-with open("google_mags5.txt", 'w') as outfile:
-    json.dump(google_magnitudes, outfile)
-with open("google_scores5.txt", 'w') as outfile:
-    json.dump(google_scores, outfile)
+with open("happy_mags2.txt", 'w') as outfile:
+    json.dump(magnitudes, outfile)
+with open("happy_scores2.txt", 'w') as outfile:
+    json.dump(scores, outfile)

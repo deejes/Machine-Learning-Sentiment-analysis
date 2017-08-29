@@ -26,3 +26,12 @@ a {
   display: block;
   color: #3e95cd;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: auto;
+
+
+}

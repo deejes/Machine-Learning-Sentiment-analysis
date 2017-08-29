@@ -1,22 +1,20 @@
 import json
-with open("monsanto_sent.txt", 'r') as infile:
+with open("tesla728-us.txt", 'r') as infile:
     data = infile.read()
 
 
-with open("monsanto_sent_dates.txt", 'r') as outfile:
-    dates = outfile.read()
 
 
 data = [float(x) for x in data[1:-1].split(',')]
-dates = [x for x in dates[1:-1].split(',')]
+# dates = [x for x in dates[1:-1].split(',')]
 
-print (len(dates))
+# print (len(dates))
 
 
-interval = int(len(dates)*.1)
+interval = int(len(data)*.1)
 
 mod_data = []
-mod_dates = []
+# mod_dates = []
 
 # import pdb; pdb.set_trace()
 start = 0
@@ -26,9 +24,9 @@ for x in range(10):
     slice_average = sum(data_slice) / float(len(data_slice))
     mod_data.append(slice_average)
 
-    date_slice = str(dates[start][5:18]+'-'+dates[end-1][13:18])
+    # date_slice = str(dates[start][5:18]+'-'+dates[end-1][13:18])
     # import pdb; pdb.set_trace()
-    mod_dates.append(date_slice)
+    # mod_dates.append(date_slice)
 
 
     start += interval
@@ -36,11 +34,11 @@ for x in range(10):
 
 
 
-print (mod_data)
-print (mod_dates)
+print ('us-tesla',mod_data)
+# print (mod_dates)
 
 
-with open("monsanto_sent_data.txt", 'w') as outfile:
-    json.dump(mod_data, outfile)
-with open("monsanto_sent_dates_data.txt", 'w') as outfile:
-    json.dump(mod_dates, outfile)
+# with open("monsanto_sent_data.txt", 'w') as outfile:
+#     json.dump(mod_data, outfile)
+# with open("monsanto_sent_dates_data.txt", 'w') as outfile:
+#     json.dump(mod_dates, outfile)
